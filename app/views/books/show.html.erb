@@ -10,7 +10,7 @@
  <b>Автор:</b>
 <%= @book.autor %> <br/>
 	<b>Цена:</b>
-		<td ><%= @book.price %> <br/>
+		<td ><%= number_to_currency(@book.price) %> <br/>
  <b>Наличие:</b>
     <td><%= if (@book.available == true) then "есть" else "нет" end%> <br/>
  
