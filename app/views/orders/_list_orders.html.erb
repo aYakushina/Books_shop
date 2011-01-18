@@ -1,0 +1,29 @@
+<%if @orders != []%>
+	<table class="list">
+		<tr>
+		  <th>Номер</th>
+		  <th>Сумма</th>
+		  <th>Дата</th>
+		  <th>Способ оплаты</th>
+		  <th>Способ доставки</th>
+		  <th>Статус</th>
+		  <th></th>
+		  <th></th>
+		</tr>
+
+	<% @orders.each do |order| %>
+		<tr id="edit">
+		  <td><%= link_to order.id, order %></td>
+		  <td><%= order.sum %></td>
+		  <td><%= order.date.day.to_s  + '.' + order.date.month.to_s  + '.' + order.date.year.to_s  %></td>
+		  <td><%= order.payment %></td>
+		  <td><%= order.delivery %></td>
+		  <td><%= order.status %></td>
+			<td id ="bubble_edit" rel="tooltip" content="Редактировать заказ"><%= link_to '', edit_order_path(order) %></td>
+		  <td id ="bubble_del" rel="tooltip" content="Удалить заказ"><%= link_to '', order, :confirm => 'Вы уверены?', :method => :delete %></td>
+		</tr>
+	<% end %>
+	</table>
+<%else%>
+	<p>Список пуст</p>
+<%end%>

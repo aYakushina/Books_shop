@@ -1,0 +1,25 @@
+$("#books").animate({ opacity: "hide" }, "slow", function(){
+			$("#books").html("<%= escape_javascript(render 'list')%>");
+			$("#books").animate({ opacity: "show" }, "slow");
+
+	
+
+			   $("#listing a").click(function(){	
+				$("#listing a").css("color","#1e90ff");
+         $(this).css("color","white");
+					});  
+
+		  $('table.list').find('tr:odd').css("background-color","#101010");
+			  $(".list .accordion:first").addClass("active");
+    $(".list #description").hide(); 
+    $(".list .accordion").click(function(){
+ 
+        $(this).next("#description").fadeToggle();
+        $(this).toggleClass("active");
+        $(this).siblings(".accordion").removeClass("active");
+     });  
+			
+		
+		get_tips();
+});
+

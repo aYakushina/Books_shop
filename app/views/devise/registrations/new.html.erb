@@ -1,0 +1,23 @@
+<div id="registration">
+	<h2>Регистрация</h2>
+
+	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+		<%= devise_error_messages! %>
+
+		<p><%= f.label "Логин" %><br />
+		<%= f.text_field :username %></p>
+
+		<p><%= f.label "e-mail" %><br />
+		<%= f.text_field :email %></p>
+
+		<p><%= f.label "Пароль" %><br />
+		<%= f.password_field :password %></p>
+
+		<p><%= f.label "Введите пароль еще раз" %><br />
+		<%= f.password_field :password_confirmation %></p>
+
+		<p><%= f.submit "Зарегистрироваться", :class => "button_grid" %></p>
+	<% end %>
+
+	<%= render :partial => "devise/shared/links" %>
+</div>

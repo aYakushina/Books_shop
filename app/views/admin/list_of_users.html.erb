@@ -1,0 +1,26 @@
+<h1>Список пользователей</h1>
+<table class="list">
+  <tr>
+		<th>Логин</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>E-mail</th>
+    <th>Телефон</th>
+    <th>Адрес</th>
+    <th>is_admin</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr id="edit">
+    <td><%= link_to user.username, "/users/edit" %></td>
+		<td><%= user.l_name %></td>
+    <td><%= user.f_name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.telephone %></td>
+    <td><%= user.address %></td>
+    <td><%= user.is_admin %></td>
+  </tr>
+<% end %>
+</table>
+
+

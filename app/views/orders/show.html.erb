@@ -1,0 +1,30 @@
+<div id="order">
+<table>
+	<td><h1> Номер заказа: <%= @order.id%></h1></td>
+	<td id ="bubble_edit" rel="tooltip" content="Редактировать заказ"><%= link_to '', edit_order_path(@order) %></td>
+	<td id ="bubble_del" rel="tooltip" content="Удалить заказ"><%= link_to '', @order, :confirm => 'Вы уверены?', :method => :delete%></td>
+</table>
+<table>
+  <tr>
+    <th align = "left">Сумма:</th>
+		<td><%= @order.sum %></td>
+	</tr>
+  <tr>
+    <th align = "left">Дата:</th>
+		<td><%= @order.date.day.to_s  + '.' + @order.date.month.to_s  + '.' + @order.date.year.to_s  %></td>
+	</tr>
+  <tr>
+    <th align = "left">Способ оплаты:</th>
+		<td><%= @order.payment %></td>
+	</tr>
+  <tr>
+    <th align = "left">Способ доставки:</th>
+		<td><%= @order.delivery %></td>
+	</tr>
+  <tr>
+    <th align = "left">Статус:</th>
+		<td><%= @order.status %></td>
+  </tr>
+</table>
+
+</div>

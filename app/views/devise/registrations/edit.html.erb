@@ -1,0 +1,55 @@
+<h2>Редактирование</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+<table>
+  <tr>
+		<td><%= f.label "Логин" %></td>
+		<td><%= f.text_field :username %></td>
+ </tr>
+<tr>
+	<td><%= f.label "e-mail" %></td>
+		<td><%= f.text_field :email %></td>
+ </tr>
+<tr>
+		<td><%= f.label "Имя" %></td>
+		<td><%= f.text_field :f_name %></td>
+ </tr>
+<tr>
+	<td><%= f.label "Фамилия"%></td>
+		 <td><%= f.text_field :l_name %></td>
+ </tr>
+<tr>
+	<td><%= f.label "Телефон" %></td>
+	<td><%= f.text_field :telephone %></td>
+ </tr>
+<tr>
+		<td><%= f.label "Адрес" %></td>
+		 <td><%= f.text_field :address %></td>
+ </tr>
+<%if current_user!= nil%>
+			<%if current_user.is_admin? %>
+<tr>
+		<td><%= f.label "is_admin" %></td>
+		<td><%= f.text_field :is_admin %></td>
+ </tr>
+	<%end%>
+		<%end%>
+<tr>
+		<td><%= f.label "Новый пароль" %> </td>
+		<td><%= f.password_field :password %></td>
+ </tr>
+<tr>
+		<td><%= f.label "Введите еще раз новый пароль" %></td>
+		<td><%= f.password_field :password_confirmation %></td>
+ </tr>
+<tr>
+		<td><%= f.label "Текущий пароль" %> </td>
+		<td><%= f.password_field :current_password %></td>
+ </tr>
+</table>
+ 		 <p><%= f.submit "Сохранить", :class => "button_grid" %></p>
+ <% end %>
+
+<p><%= link_to "Удалить мой аккаунт", registration_path(resource_name), :confirm => "Вы уверены?", :method => :delete %></p>
+

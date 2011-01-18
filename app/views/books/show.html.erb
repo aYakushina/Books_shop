@@ -1,0 +1,33 @@
+
+<table>
+	<td align="center"><h1>"<%= @book.title %>"</h1></td>
+<%if current_user!= nil%>
+		<%if current_user.is_admin? %>
+			<td id ="bubble_edit" rel="tooltip" content="Редактировать книгу"><%= link_to '', edit_book_path(@book)%></td>
+		<%end%>
+<%end%>	
+	</table>
+ <b>Автор:</b>
+<%= @book.autor %> <br/>
+	<b>Цена:</b>
+		<td ><%= @book.price %> <br/>
+ <b>Наличие:</b>
+    <td><%= if (@book.available == true) then "есть" else "нет" end%> <br/>
+ 
+	<br/><br/>
+<div id="desc", style="width: 90%"><%= @book.description%></div>
+
+<%if current_user!= nil%>
+	<br/>
+	<p>
+		<div id = "add_to_order">
+			<%= form_tag "/books/add_book", :method => "get", :remote => true do %>
+			 <%= hidden_field_tag :id, @book.id%>
+				<%if !@added%>
+					 	<%= submit_tag 'Добавить в корзину', :class => "button_grid" %>
+				<% end %>
+			<% end %> 
+		</div>
+	</p>
+<% end %>
+

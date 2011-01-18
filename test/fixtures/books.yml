@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  autor: 'Алёшина И.В.'
+  title: 'Паблик рилейшнз для менеджеров'
+  price: 499.50
+  available: true
+
+two:
+  autor: 'Соколова П.Р.'
+  title: 'Социалогия коммуникаций'
+  price: 352.22
+  available: true
+
+three:
+  autor: 'Мещанинов А.А'
+  title: 'Образ компании'
+  price: 31.52
+  available: true
+
+four:
+  autor: 'Соколов И.Н'
+  title: 'Массовая коммуникация'
+  price: 150
+  available: false
+
+five:
+  autor: 'Шишкина М.А'
+  title: 'ПР в системе управления'
+  price: 150
+  available: true
+
+six:
+  autor: 'Юэн Стюарт'
+  title: 'PR! Или умение «раскручивать» Социальная история паблик рилейшнз'
+  price: 1500.30
+  available: false

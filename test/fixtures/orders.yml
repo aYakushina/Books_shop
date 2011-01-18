@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+#one:
+#  sum: 1.5
+#  date: 2010-11-23 11:06:52
+#  payment: payment
+#  delivery: delivery
+#  status: status
+#  user_id: 1
+
+#two:
+#  sum: 1500
+#  date: 2010-11-23 11:06:52
+#  payment: payment2
+#  delivery: delivery2
+#  status: status2
+#  user_id: 1

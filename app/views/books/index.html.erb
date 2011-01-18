@@ -1,0 +1,37 @@
+<div id = "search", align="left">
+				<%= form_tag books_path, :method => "get" do %> 
+					<%= label_tag "Поиск:" %> 
+					<%= text_field_tag :request %> 
+					<%= submit_tag "Найти", :class => "button_grid"%> <br/>
+					<%= check_box_tag :available%>
+					<%= label_tag :available, "есть в наличии"%>
+				<% end %> 
+</div>	
+
+<h1>Список книг</h1>
+
+<%if current_user!= nil%>
+	<%if current_user.is_admin? %>
+		<%= link_to 'Новая книга', new_book_path %>
+ 	<%end%>
+<%end%>
+
+<div id = "books">
+	<%= render 'list' %>
+</div>
+<br/>
+
+<br/>
+<div id = "listing">
+	<% if @listing > 1 then %> 
+		<% @listing.times do |number| %>
+				<% if @search != "" or @search_available != 0 %> 
+					<%= link_to number+1, "/books?number=" + (number).to_s + "&request=" + @search.to_s + "&available=" +  @search_available.to_s, :remote => true %>
+				<%else%>
+					<%= link_to number+1, "/books?number=" + (number).to_s, :remote => true%>
+				<%end%>
+		<%end%>
+<% end %> 
+</div>
+<br/><br/>
+

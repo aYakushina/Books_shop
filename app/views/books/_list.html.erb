@@ -1,0 +1,44 @@
+<% if @books != [] && @books != nil then %> 
+
+<table class="list">
+  <tr>
+    <th class="autor">Автор</th>
+    <th class="name">Название</th>
+    <th class="price">Цена</th>
+    <th class="available">Наличие</th>
+		<th class="act"></th>
+		<%if current_user!= nil%>
+				<%if current_user.is_admin? %>
+						<th class="act"></th>
+						<th class="act"></th>
+				<%end%>	
+		<%end%>
+  </tr>
+<% @books.each do |book| %>
+  <tr id="edit", class="accordion" >
+    <td class="autor"><%= book.autor %></td>
+    <td class="name", rel="tooltip", content="Кликните для просмотра краткой информации", style="color: #1e90ff"><%=book.title%></td>
+    <td class="price", align="center"><%= book.price %></td>
+    <td class="available", align="center"><%= if (book.available == true) then "есть" else "нет" end%></td>
+		<td class="act" id ="bubble_info" rel="tooltip" content="Подробная информация"><%= link_to '', book%></td>
+    		<%if current_user!= nil%>
+					<%if current_user.is_admin? %>						
+						<td class="act" id ="bubble_edit" rel="tooltip" content="Редактировать книгу"><%= link_to '', edit_book_path(book)%></td>
+						<td class="act" id ="bubble_del" rel="tooltip" content="Удалить книгу"><%= link_to '', book, :confirm => 'Вы уверены?', :method => :delete %></td>
+					<%end%>	
+				<%end%>
+  </tr>
+	<tr id="description">
+		<td  colspan="7", id = "desc">  <% if book.description != nil %>
+																		<%= book.description%>
+																		<% else %> Описание отсутсвует <%end %></td>
+	</tr>
+
+<% end %>
+<% else %>
+<%= label_tag "Список пуст" %> <br /><br />
+<% end %>
+</table> 
+
+
+

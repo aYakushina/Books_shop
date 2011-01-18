@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Книжный магазин</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :all %>
+  <%= csrf_meta_tag %>	
+		<!--<script type="text/javascript", src="/javascripts/my_jquery.js"></script> -->
+		<!--<script type="text/javascript", src="/javascripts/raphael.js"></script> -->
+	
+</head>
+<body>  
+
+<div id="boxes">  
+<div id="dialog" class="window"> 
+    <a href="#" class="close"/>Закрыть</a>
+<div id="rafael"></div>
+    </div>
+</div>
+<!-- Макска, которая затемняет весь экран -->
+  <div id="mask"></div>
+<div class="top">	
+<div id='inform'></div>
+<div id = "notice">	<%= flash[:notice] %> </div>
+	<div id = "alert"> <%= flash[:alert] %> </div>
+
+
+</div>
+
+
+<div class="center">	
+<br/>
+	<div  align = "center">  
+		<%= yield %>
+	</div>		
+<br/>
+</div>
+
+<div class="left">
+	<div id="menu">
+	 <div id="item", class ="bubble_books"><%= link_to "Книги", books_path%></div>
+		<% if user_signed_in? %>
+							<%if current_user.is_admin? %>
+									 <div id="item", style="top: 25%", class ="bubble_users"><%= link_to 'Юзеры', "/admin/list_of_users"%></div>
+									 <div id="item", style="top: 40%", class ="bubble_orders"><%= link_to 'Заказы', "/orders"%> </div>
+							<%end%>
+		<% end %>
+	</div>
+</div>
+<div class="bottom_menu">
+	<a href="#dialog" name="modal">рисовалка</a>
+	<a href="#" class="circle">перчик</a>
+	<a href="#right" class="arrow"> </a>
+</div>
+<div id="circle"  ></div>
+<div class="right">
+	<div class="top">
+			<div><% if user_signed_in? %>
+							<table id="edit", class="list">
+								  <tr>
+ 									  <td><i><%= link_to current_user.username, "/orders/show_office"%> </i>	</td>
+										<td id ="bubble_edit"><%= link_to '', edit_user_registration_path%></td>	
+										<td><%= link_to 'Выйти', "/admin/quit" %></td>
+									</tr>
+							</table>			
+			<% else %>
+							<%= link_to 'Войти', new_user_session_path%> 			
+							<%= link_to 'Регистрация', new_user_registration_path%> 
+			<% end %>
+			</div>
+	
+	</div>
+	<% if user_signed_in? %>
+							<%if current_user.is_admin? %>
+	<div class="bottom">
+					<div id="in_cart"><%=find_cart.items.length%></div>
+					<div id="cart" rel="tooltip" content="Перейти в корзину"><%= link_to ' ', new_order_path %> </div> 
+					<div id="del_cart" rel="tooltip" content="Очистить корзину"><%= link_to '', "/orders/del_cart" %> </div>		
+	</div>
+	<%end%>
+					
+			<% end %>
+</div>
+
+<div class="bottom">
+	Якушина Алена < a.yakushina@primelabs.ru > 2010-2011
+	</div>
+</body>
+</html>

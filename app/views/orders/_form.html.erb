@@ -1,0 +1,64 @@
+<%= label_tag "Сумма: " + @order.sum.to_s + " рублей" %>
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= 'Ошибка!'%></h2>
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<%= f.hidden_field :sum, :value => @order.sum %>
+  	<br/>
+		  <%= f.label "Способ оплаты" %>
+		  <%= f.select(:payment,['Наложенный платеж', 'Банковская карта', 'Электронные деньги', 'Наличный расчет' ]) %> 
+		 	<%= f.label "Способ доставки" %>
+			<%= f.select(:delivery,['Почтовая посылка','Доставка курьером', 'Самовывоз']) %>
+			<%if current_user!= nil%>
+			<%if current_user.is_admin? %>
+					<br/><br/>
+					<%= f.label "Статус" %>
+					<%= f.select(:status,['В обработке', 'Принят', 'Не оплачен', 'Оплачен', 'В пункте самовывоза', 'Выполнен'], :class => "button_grid")  %>
+			<%end%>	
+	<%end%>
+
+<div id = "books">
+<h3>Список книг:</h3>
+<% if @books != [] then %> 
+		<div id = "list_of_books">
+			<table >
+				<tr>
+					<th>Автор</th>
+					<th>Название</th>
+					<th>Цена</th>
+					<th>Наличие</th>
+					<th></th>
+				</tr>
+			<% @books.each do |book| %>	
+					<tr id="edit">
+						<td><%= book.autor %></td>
+						<td><%= link_to book.title, book %></td>
+						<td align="center"><%= book.price %></td>
+						<td align="center"><%= if (book.available == true) then "есть" else "нет" end%></td>												
+						<td id ="bubble_del", class="del"><%= link_to '', "/books/del_book?id=" + book.id.to_s, :title =>"Удалить из заказа" %></td>
+					</tr>
+			<% end %>
+			</table> 
+		</div>
+<% else %>
+	<%= label_tag "Список пуст" %> <br /><br />
+<% end %>
+</div>
+
+<p>
+	<%if @books!= []%>
+		<% if @order.date != nil%>
+			<%= f.submit "Сохранить заказ", :class => "button_grid" %>
+		<%else%>
+    	<%= f.submit "Отправить заказ" , :class => "button_grid"%>
+		<%end%>
+	<%end%>
+</p>
+<% end %>
